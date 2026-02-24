@@ -267,30 +267,7 @@ npm install
 npm run dev
 
 # Access at http://localhost:3000
-```
-
-## BDD Testing with Cucumber
-
-Example Gherkin feature file:
-
-```gherkin
-Feature: Supermarket Price Comparison
-
-  Scenario: Finding the cheapest milk in the UK
-    Given I am on the PoundSaver AI home page
-    When I search for "Whole Milk 2 pints"
-    And the system scrapes Asda, Tesco, Lidl, Costco, and B&M
-    Then the results should be sorted by "Price Low to High"
-    And the cheapest item should be highlighted
-    And I should see the price per liter for each product
-
-  Scenario: Loyalty card price comparison
-    Given I am searching for "Heinz Baked Beans 400g"
-    When I enable "Tesco Clubcard" pricing
-    Then I should see both regular and Clubcard prices
-    And the system should highlight the best overall deal
-```
-
+``
 Run tests:
 
 ```bash
