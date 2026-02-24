@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Search, Loader2 } from 'lucide-react'
+import { Search, Loader2, Tag, Bot, TrendingUp } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { searchProducts } from '@/api/products'
 import { ProductCard } from '@/components/ProductCard'
@@ -25,7 +25,13 @@ export function HomePage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto relative">
+      {/* Animated Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 dark:bg-yellow-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 dark:bg-pink-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
       <div className="text-center mb-12">
         <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
           Compare UK Grocery Prices in Real-Time
@@ -110,8 +116,10 @@ export function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-              <div className="text-2xl mb-3">Price Tag</div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-blue-100 dark:bg-blue-900">
+                <Tag className="w-6 h-6 text-blue-600 dark:text-blue-300" />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Real-Time Prices
               </h3>
@@ -119,8 +127,10 @@ export function HomePage() {
                 Live price scraping from all major UK supermarkets updated continuously
               </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-              <div className="text-2xl mb-3">Robot</div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-green-100 dark:bg-green-900">
+                <Bot className="w-6 h-6 text-green-600 dark:text-green-300" />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 AI-Powered Matching
               </h3>
@@ -128,8 +138,10 @@ export function HomePage() {
                 Smart product matching across retailers for accurate comparisons
               </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-              <div className="text-2xl mb-3">Chart</div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
+              <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-purple-100 dark:bg-purple-900">
+                <TrendingUp className="w-6 h-6 text-purple-600 dark:text-purple-300" />
+              </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Price History
               </h3>

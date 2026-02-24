@@ -2,8 +2,61 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+
+// Security: CORS configuration
+const corsOptions = {
+  origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  maxAge: 86400 // 24 hours
+};
+app.use(cors(corsOptions));
+
+// Security: JSON body parser with size limit
+app.use(express.json({ limit: '10mb' }));
+
+// Security: Rate limiting (simple in-memory implementation)
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW = 60000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 100;
+
+const rateLimit = (req, res, next) => {
+  const ip = req.ip || req.connection.remoteAddress;
+  const now = Date.now();
+  
+  if (!rateLimitMap.has(ip)) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return next();
+  }
+  
+  const clientData = rateLimitMap.get(ip);
+  
+  if (now > clientData.resetTime) {
+    clientData.count = 1;
+    clientData.resetTime = now + RATE_LIMIT_WINDOW;
+    return next();
+  }
+  
+  if (clientData.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return res.status(429).json({ 
+      error: 'Too many requests',
+      message: 'Rate limit exceeded. Please try again later.',
+      retryAfter: Math.ceil((clientData.resetTime - now) / 1000)
+    });
+  }
+  
+  clientData.count++;
+  next();
+};
+
+app.use(rateLimit);
+
+// Security: Input validation helper
+const sanitizeInput = (input) => {
+  if (typeof input !== 'string') return '';
+  return input.replace(/[<>\"']/g, '').trim().substring(0, 100);
+};
 
 const PORT = 8080;
 
@@ -733,7 +786,7 @@ addProductToAllRetailers({
 
 // Search endpoint
 app.get('/v1/products/search', (req, res) => {
-  const query = req.query.query?.toLowerCase() || '';
+  const query = sanitizeInput(req.query.query || '').toLowerCase();
   
   // For broad search terms, return diverse products from different categories
   if (query === '' || query === 'all' || query === 'products') {
