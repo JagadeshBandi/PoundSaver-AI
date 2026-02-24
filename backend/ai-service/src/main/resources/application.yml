@@ -1,0 +1,25 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: ai-service
+
+openai:
+  api:
+    key: ${OPENAI_API_KEY:your-api-key-here}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+logging:
+  level:
+    com.poundsaver.ai: DEBUG
+    dev.langchain4j: INFO
