@@ -64,6 +64,11 @@ public class ProductDTO {
         this.matchConfidence = matchConfidence;
     }
 
+    // Static builder method
+    public static Builder builder() {
+        return new Builder();
+    }
+
     // Getters and Setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -148,5 +153,56 @@ public class ProductDTO {
                 ", retailer='" + retailer + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    // Builder pattern implementation
+    public static class Builder {
+        private String id;
+        private String name;
+        private String normalizedName;
+        private String brand;
+        private String category;
+        private String retailer;
+        private BigDecimal price;
+        private BigDecimal pricePerUnit;
+        private String unit;
+        private BigDecimal loyaltyPrice;
+        private String loyaltyScheme;
+        private Integer quantity;
+        private String size;
+        private Boolean inStock;
+        private String imageUrl;
+        private String productUrl;
+        private String ean;
+        private LocalDateTime scrapedAt;
+        private LocalDateTime lastUpdated;
+        private Double matchConfidence;
+
+        public Builder id(String id) { this.id = id; return this; }
+        public Builder name(String name) { this.name = name; return this; }
+        public Builder normalizedName(String normalizedName) { this.normalizedName = normalizedName; return this; }
+        public Builder brand(String brand) { this.brand = brand; return this; }
+        public Builder category(String category) { this.category = category; return this; }
+        public Builder retailer(String retailer) { this.retailer = retailer; return this; }
+        public Builder price(BigDecimal price) { this.price = price; return this; }
+        public Builder pricePerUnit(BigDecimal pricePerUnit) { this.pricePerUnit = pricePerUnit; return this; }
+        public Builder unit(String unit) { this.unit = unit; return this; }
+        public Builder loyaltyPrice(BigDecimal loyaltyPrice) { this.loyaltyPrice = loyaltyPrice; return this; }
+        public Builder loyaltyScheme(String loyaltyScheme) { this.loyaltyScheme = loyaltyScheme; return this; }
+        public Builder quantity(Integer quantity) { this.quantity = quantity; return this; }
+        public Builder size(String size) { this.size = size; return this; }
+        public Builder inStock(Boolean inStock) { this.inStock = inStock; return this; }
+        public Builder imageUrl(String imageUrl) { this.imageUrl = imageUrl; return this; }
+        public Builder productUrl(String productUrl) { this.productUrl = productUrl; return this; }
+        public Builder ean(String ean) { this.ean = ean; return this; }
+        public Builder scrapedAt(LocalDateTime scrapedAt) { this.scrapedAt = scrapedAt; return this; }
+        public Builder lastUpdated(LocalDateTime lastUpdated) { this.lastUpdated = lastUpdated; return this; }
+        public Builder matchConfidence(Double matchConfidence) { this.matchConfidence = matchConfidence; return this; }
+
+        public ProductDTO build() {
+            return new ProductDTO(id, name, normalizedName, brand, category, retailer, price, 
+                pricePerUnit, unit, loyaltyPrice, loyaltyScheme, quantity, size, inStock, 
+                imageUrl, productUrl, ean, scrapedAt, lastUpdated, matchConfidence);
+        }
     }
 }

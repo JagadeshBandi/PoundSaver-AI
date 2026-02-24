@@ -22,6 +22,20 @@ const retailerConfig = {
     bgColor: 'bg-green-100',
     borderColor: 'border-green-200'
   },
+  'SAINSBURYS': {
+    name: "Sainsbury's",
+    logo: '🏬',
+    color: 'text-orange-600',
+    bgColor: 'bg-orange-100',
+    borderColor: 'border-orange-200'
+  },
+  'MORRISONS': {
+    name: 'Morrisons',
+    logo: '🏭',
+    color: 'text-green-700',
+    bgColor: 'bg-green-100',
+    borderColor: 'border-green-200'
+  },
   'LIDL': {
     name: 'Lidl',
     logo: '🏬',
@@ -63,6 +77,20 @@ const retailerConfig = {
     color: 'text-orange-600',
     bgColor: 'bg-orange-100',
     borderColor: 'border-orange-200'
+  },
+  'CO-OP': {
+    name: 'Co-op',
+    logo: '🏪',
+    color: 'text-green-700',
+    bgColor: 'bg-green-100',
+    borderColor: 'border-green-200'
+  },
+  'POUNDLAND': {
+    name: 'Poundland',
+    logo: '💷',
+    color: 'text-red-600',
+    bgColor: 'bg-red-100',
+    borderColor: 'border-red-200'
   }
 }
 

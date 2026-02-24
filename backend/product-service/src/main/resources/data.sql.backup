@@ -1,0 +1,30 @@
+INSERT INTO products (id, name, normalizedName, brand, category, retailer, price, price_per_unit, unit, loyalty_price, loyalty_scheme, quantity, size, in_stock, image_url, product_url, ean, scraped_at, last_updated, match_confidence) VALUES
+('prod_001', 'Organic Whole Milk', 'organic whole milk', 'Yazoo', 'Dairy', 'Tesco', 1.20, 0.60, 'litre', 1.10, 'Clubcard', 1, '1 litre', true, 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=300&fit=crop', 'https://tesco.com/milk', '0123456789012', NOW(), NOW(), 0.95),
+
+('prod_002', 'Fresh White Bread', 'fresh white bread', 'Hovis', 'Bakery', 'Sainsbury''s', 0.80, 0.40, 'loaf', 0.72, 'Nectar', 1, '800g', true, 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop', 'https://sainsburys.com/bread', '0123456789013', NOW(), NOW(), 0.92),
+
+('prod_003', 'Bananas (Fairtrade)', 'bananas fairtrade', 'Fairtrade', 'Fruit', 'Asda', 0.68, 1.36, 'kg', NULL, NULL, 1, '500g', true, 'https://images.unsplash.com/photo-1566395113783-56a693d6d4e8?w=400&h=300&fit=crop', 'https://asda.com/bananas', '0123456789014', NOW(), NOW(), 0.88),
+
+('prod_004', 'Chicken Breast Fillets', 'chicken breast fillets', 'Tesco', 'Meat', 'Tesco', 3.50, 7.00, 'kg', 3.15, 'Clubcard', 1, '500g', true, 'https://images.unsplash.com/photo-1587593815257-3c40958120ea?w=400&h=300&fit=crop', 'https://tesco.com/chicken', '0123456789015', NOW(), NOW(), 0.94),
+
+('prod_005', 'Chicken Breast Fillets', 'chicken breast fillets', 'Tesco', 'Meat', 'Sainsbury''s', 3.75, 7.50, 'kg', 3.37, 'Nectar', 1, '500g', true, 'https://images.unsplash.com/photo-1587593815257-3c40958120ea?w=400&h=300&fit=crop', 'https://sainsburys.com/chicken', '0123456789015', NOW(), NOW(), 0.94),
+
+('prod_006', 'Free Range Eggs (Large)', 'free range eggs large', 'Happy Eggs', 'Dairy', 'Morrisons', 2.10, 0.35, 'egg', 1.89, 'More Card', 1, '6 pack', true, 'https://images.unsplash.com/photo-1518567017498-1c045a823813?w=400&h=300&fit=crop', 'https://morrisons.com/eggs', '0123456789016', NOW(), NOW(), 0.91),
+
+('prod_007', 'British Apples', 'british apples', 'British Growers', 'Fruit', 'Tesco', 1.50, 3.00, 'kg', 1.35, 'Clubcard', 1, '500g', true, 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&h=300&fit=crop', 'https://tesco.com/apples', '0123456789017', NOW(), NOW(), 0.89),
+
+('prod_008', 'British Apples', 'british apples', 'British Growers', 'Fruit', 'Aldi', 1.29, 2.58, 'kg', NULL, NULL, 1, '500g', true, 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&h=300&fit=crop', 'https://aldi.com/apples', '0123456789017', NOW(), NOW(), 0.89),
+
+('prod_009', 'Pasta Penne', 'pasta penne', 'Napolina', 'Pantry', 'Asda', 0.95, 1.90, 'kg', 0.85, 'Asda Rewards', 1, '500g', true, 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop', 'https://asda.com/pasta', '0123456789018', NOW(), NOW(), 0.93),
+
+('prod_010', 'Pasta Penne', 'pasta penne', 'Napolina', 'Pantry', 'Lidl', 0.79, 1.58, 'kg', NULL, NULL, 1, '500g', true, 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop', 'https://lidl.com/pasta', '0123456789018', NOW(), NOW(), 0.93),
+
+('prod_011', 'Tomato Ketchup', 'tomato ketchup', 'Heinz', 'Condiments', 'Tesco', 2.00, 4.00, 'kg', 1.80, 'Clubcard', 1, '500g', true, 'https://images.unsplash.com/photo-1527235519533-1e300a0b6943?w=400&h=300&fit=crop', 'https://tesco.com/ketchup', '0123456789019', NOW(), NOW(), 0.96),
+
+('prod_012', 'Orange Juice', 'orange juice', 'Tropicana', 'Drinks', 'Sainsbury''s', 1.80, 1.80, 'litre', 1.62, 'Nectar', 1, '1 litre', true, 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=300&fit=crop', 'https://sainsburys.com/juice', '0123456789020', NOW(), NOW(), 0.90),
+
+('prod_013', 'Greek Yogurt', 'greek yogurt', 'Fage', 'Dairy', 'Waitrose', 2.50, 5.00, 'kg', 2.25, 'MyWaitrose', 1, '500g', true, 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop', 'https://waitrose.com/yogurt', '0123456789021', NOW(), NOW(), 0.87),
+
+('prod_014', 'Mineral Water', 'mineral water', 'Evian', 'Drinks', 'Tesco', 0.65, 0.13, 'litre', 0.58, 'Clubcard', 1, '500ml', true, 'https://images.unsplash.com/photo-1548838066-1db5c53164b9?w=400&h=300&fit=crop', 'https://tesco.com/water', '0123456789022', NOW(), NOW(), 0.85),
+
+('prod_015', 'Mineral Water', 'mineral water', 'Evian', 'Drinks', 'Aldi', 0.45, 0.09, 'litre', NULL, NULL, 1, '500ml', true, 'https://images.unsplash.com/photo-1548838066-1db5c53164b9?w=400&h=300&fit=crop', 'https://aldi.com/water', '0123456789022', NOW(), NOW(), 0.85);

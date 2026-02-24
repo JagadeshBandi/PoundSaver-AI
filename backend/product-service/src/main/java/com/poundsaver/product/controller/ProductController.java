@@ -1,20 +1,24 @@
 package com.poundsaver.product.controller;
 
+import com.poundsaver.product.entity.Product;
 import com.poundsaver.product.service.ProductService;
 import com.poundsaver.shared.dto.ProductDTO;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/products")
-@RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/search")
     public Mono<ResponseEntity<List<ProductDTO>>> searchProducts(@RequestParam String query) {
@@ -32,6 +36,25 @@ public class ProductController {
     public Mono<ResponseEntity<List<ProductDTO>>> getProductsByRetailer(@PathVariable String retailer) {
         return Mono.fromCallable(() -> productService.getProductsByRetailer(retailer))
                 .map(ResponseEntity::ok);
+    }
+
+    @PostMapping
+    public Mono<ResponseEntity<ProductDTO>> createProduct(@RequestBody ProductDTO productDTO) {
+        return Mono.fromCallable(() -> {
+            Product savedProduct = productService.saveProduct(productDTO);
+            return ResponseEntity.ok(mapToDTO(savedProduct));
+        });
+    }
+
+    @PostMapping("/bulk")
+    public Mono<ResponseEntity<List<ProductDTO>>> createProducts(@RequestBody List<ProductDTO> productDTOs) {
+        return Mono.fromCallable(() -> {
+            List<ProductDTO> savedProducts = productDTOs.stream()
+                    .map(productService::saveProduct)
+                    .map(this::mapToDTO)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(savedProducts);
+        });
     }
 
     @GetMapping("/{id}")

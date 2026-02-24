@@ -31,7 +31,7 @@ export function HomePage() {
           Compare UK Grocery Prices in Real-Time
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300">
-          Find the cheapest prices across Tesco, Asda, Lidl, Costco, B&M, Iceland, White Rose, and HotDeals
+          Find the cheapest prices across Tesco, Sainsbury's, Asda, Morrisons, Aldi, Lidl, Costco, B&M, Co-op, Poundland, Iceland, White Rose, and HotDeals
         </p>
       </div>
 
@@ -71,10 +71,10 @@ export function HomePage() {
         <div>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Found {data.length} products
+              {data.length > 10 ? `Price Comparison: ${data[0]?.name || 'Products'}` : `Found ${data.length} products`}
             </h2>
             <div className="text-sm text-gray-600 dark:text-gray-400">
-              Sorted by price (low to high)
+              {data.length > 10 ? 'All retailers sorted by price (low to high)' : 'Sorted by price (low to high)'}
             </div>
           </div>
 
@@ -101,7 +101,7 @@ export function HomePage() {
               Compare Prices Across All Major UK Supermarkets
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
-              We search through 1,152+ products from 8 leading retailers to find you the best deals
+              We search through 429+ products from 13 leading retailers to find you the best deals
             </p>
           </div>
 
@@ -111,7 +111,7 @@ export function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-              <div className="text-2xl mb-3">🏷️</div>
+              <div className="text-2xl mb-3">Price Tag</div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Real-Time Prices
               </h3>
@@ -120,7 +120,7 @@ export function HomePage() {
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-              <div className="text-2xl mb-3">🤖</div>
+              <div className="text-2xl mb-3">Robot</div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 AI-Powered Matching
               </h3>
@@ -129,7 +129,7 @@ export function HomePage() {
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-              <div className="text-2xl mb-3">📈</div>
+              <div className="text-2xl mb-3">Chart</div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                 Price History
               </h3>

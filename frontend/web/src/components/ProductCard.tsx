@@ -1,27 +1,62 @@
-import { ExternalLink, TrendingDown, Tag } from 'lucide-react'
+import { ExternalLink, TrendingDown, Tag, Image as ImageIcon } from 'lucide-react'
 import { Product } from '@/types'
 import { RetailerLogo } from './RetailerLogo'
+import { useState } from 'react'
 
 interface ProductCardProps {
   product: Product
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const [imageError, setImageError] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
   const hasLoyaltyPrice = product.loyaltyPrice && product.loyaltyPrice < product.price
+
+  const handleImageError = () => {
+    setImageError(true)
+    setImageLoaded(true)
+  }
+
+  const handleImageLoad = () => {
+    setImageLoaded(true)
+  }
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-700">
-      <div className="relative">
-        {product.imageUrl && (
-          <img
-            src={product.imageUrl}
-            alt={product.name}
-            className="w-full h-48 object-cover"
-          />
+      <div className="relative h-48 bg-gray-100 dark:bg-gray-700">
+        {product.imageUrl && !imageError ? (
+          <>
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              className={`w-full h-48 object-cover transition-opacity duration-300 ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              onLoad={handleImageLoad}
+              onError={handleImageError}
+            />
+            {!imageLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700">
+                <div className="animate-pulse">
+                  <ImageIcon className="h-8 w-8 text-gray-400" />
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="w-full h-48 flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-700">
+            <ImageIcon className="h-12 w-12 text-gray-400 mb-2" />
+            <span className="text-sm text-gray-500 dark:text-gray-400">No image available</span>
+          </div>
         )}
         <div className="absolute top-2 right-2">
           <RetailerLogo retailer={product.retailer} size="sm" />
         </div>
+        {hasLoyaltyPrice && (
+          <div className="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+            Save £{(product.price - product.loyaltyPrice).toFixed(2)}
+          </div>
+        )}
       </div>
 
       <div className="p-4">
