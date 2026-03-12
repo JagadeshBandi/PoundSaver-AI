@@ -50,7 +50,7 @@ const retailerConfig = {
     bgColor: 'bg-purple-100',
     borderColor: 'border-purple-200'
   },
-  'BM': {
+  'B&M': {
     name: 'B&M',
     logo: '🏪',
     color: 'text-orange-600',
